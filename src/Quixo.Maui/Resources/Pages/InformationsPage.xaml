@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Quixo.Resources.Pages.InformationsPage"
+             Title="InformationsPage">
+    
+    <ScrollView>
+        <Grid Padding="20"
+            Style="{StaticResource MainGridStyle}">
+        
+            <Border Style="{StaticResource MainBorderStyle}">
+
+                <Grid ColumnDefinitions="*, *"
+                      RowDefinitions="Auto,Auto,*"
+                      Padding="60">
+
+                    <Label Grid.Row="0"
+                           Grid.ColumnSpan="2"
+                           Text="INFORMATIONS"
+                           Style="{StaticResource SubtitleLabelStyle}" />
+
+                    <BoxView Grid.Row="1"
+                             Grid.ColumnSpan="2"
+                             Style="{StaticResource LongDividerStyle}" />
+
+                    <VerticalStackLayout Grid.Row="2"
+                                        Grid.Column="0"
+                                        VerticalOptions="Start"
+                                        Spacing="20">
+                        <Label Text="L'objectif est d'être le premier à aligner 5 cubes avec son symbole de manières  horizontale, verticale ou diagonale."
+                                Style="{StaticResource InfoLabelStyle}" />
+
+                        <Label Text="À chaque tour, le joueur doit choisir un cube sur les extrémités qui n'as pas de symbole actuel ou qui est marqué par son symbole. Si le cube pris est neutre il le tournera afin de mettre vers le haut son symbole. Il le replacera de manière à ce que la grille garde sa forme de base, impliquant obligatoirement un décalage des autres cubes."
+                                Style="{StaticResource InfoLabelStyle}" />
+
+                        <Label Text="Pendant toute la partie, un cube neutre aléatoire est choisi pendant 4 tours, pendant ces tours, le cube choisi ne peut être sélectionné s'il se trouve sur le bord, le cube pourra cependant être déplacé avec les différentes pousses."
+                                Style="{StaticResource InfoLabelStyle}" />
+
+                        <Label Text="ÉQUIPE :&#10;   BREUIL Emeric,&#10;   GARBUGLI Victor,&#10;   PICHOT-MOÏSE Mathéo"
+                                Style="{StaticResource NormalLabelStyle}" />
+
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Row="2"
+                                        Grid.Column="1"
+                                        VerticalOptions="End"
+                                        Spacing="15">
+                        
+                        <Button Text="RETOUR"
+                                Style="{StaticResource SecondaryButtonStyle}"
+                                Clicked="BtnRetour_Clicked"/>
+                        
+                        <Label></Label>
+
+                    </VerticalStackLayout>
+
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollView>
+</ContentPage>

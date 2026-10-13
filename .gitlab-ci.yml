@@ -1,0 +1,88 @@
+stages:
+    - 🏗️build
+    - 🧪tests
+    - ☢️code-analysis
+    - 📄docs
+    - 📦push
+    - 🚀deploy
+
+include:
+  - project: 'IUT_INF63/generic-ci'
+    ref: 'main'
+    file:
+      - 'build/.documentation-build.yml'
+      - 'deploy/.docker-deploy.yml'
+
+build:
+  stage: 🏗️build
+  image: mcr.microsoft.com/dotnet/sdk:10.0
+  script:
+    - cd src/
+    - dotnet restore Quixo.Console.slnx
+    - dotnet build Quixo.Console.slnx -c Release --no-restore
+    - dotnet publish Quixo.Console.slnx -c Release --no-restore -o $CI_PROJECT_DIR/build/release
+  
+build-maui:
+  stage: 🏗️build
+  image: codefirst.iut.uca.fr/macheval/codefirstimages/maui10:amd64
+  script:
+    - cd src/
+    - dotnet restore Quixo.Maui.slnx -p:TargetFramework=net10.0-android
+    - dotnet build Quixo.Maui.slnx -c Release -f net10.0-android --no-restore
+    - dotnet publish Quixo.Maui.slnx -c Release -f net10.0-android --no-restore -o $CI_PROJECT_DIR/build/release
+  rules:
+    - when: manual
+
+
+tests:
+  stage: 🧪tests
+  image: mcr.microsoft.com/dotnet/sdk:10.0
+  script:
+    - cd src/
+    - dotnet restore Quixo.Console.slnx
+    - dotnet test Quixo.Console.slnx -c Release --no-restore
+  needs:
+    - job: build
+
+sonar_analysis:
+  stage: ☢️code-analysis
+  image: codefirst.iut.uca.fr/macheval/codefirstimages/dotnet10:main
+  script:
+    - cd src/
+    - dotnet restore Quixo.Console.slnx
+    - dotnet sonarscanner begin /k:$SONAR_PROJECT_KEY /d:sonar.host.url=$SONAR_HOST /d:sonar.coverageReportPaths="coveragereport/SonarQube.xml" /d:sonar.coverage.exclusions="Tests/**" /d:sonar.exclusions="**/Quixo.Console/**" /d:sonar.login=$SONAR_TOKEN
+    - dotnet build Quixo.Console.slnx -c Release --no-restore
+    - dotnet test Quixo.Console.slnx --logger trx --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura --collect "XPlat Code Coverage"
+    - reportgenerator -reports:"**/coverage.cobertura.xml" -reporttypes:SonarQube -targetdir:"coveragereport"
+    - dotnet publish Quixo.Console.slnx -c Release --no-restore -o $CI_PROJECT_DIR/build/release
+    - dotnet sonarscanner end /d:sonar.login=$SONAR_TOKEN
+  needs:
+    - job: tests
+
+build-doxygen-documentation:
+  extends: .build-documentation
+  stage: 📄docs
+  variables:  
+    DOXYGEN_FOLDER_PATH: docs/doxygen/
+    DOC_TYPE: DOXYGEN
+    DESTINATION_REGISTRY_IMAGE_NAME: codefirst.iut.uca.fr/iut_inf63/2026_1a_g12_maui/2026_1a_g1_breuil_garbugli_pichotmoise/doc/doxygen
+    DESTINATION_REGISTRY_IMAGE_VERSION: main
+  needs:
+    - job: tests
+
+push-doxygen-documentation:
+  extends: .push-documentation-image
+  stage: 📦push
+  needs:
+    - build-doxygen-documentation
+
+deploy-my-pod:
+  extends: .deploy-image
+  stage: 🚀deploy
+  variables:
+    CONTAINER_NAME: quixodoc
+    CONTAINER_IMAGE_PATH: codefirst.iut.uca.fr/iut_inf63/2026_1a_g12_maui/2026_1a_g1_breuil_garbugli_pichotmoise/doc/doxygen:main
+    NAMESPACE_NAME: mapichotmo
+    NAMESPACE_TOKEN: $NAMESPACE_TOKEN
+  needs:
+    - push-doxygen-documentation

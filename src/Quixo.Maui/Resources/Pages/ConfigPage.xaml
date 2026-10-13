@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Quixo.Resources.Pages.ConfigPage"
+             Title="Configuration">
+
+    <ScrollView>
+        <Grid Padding="20" Style="{StaticResource MainGridStyle}">
+            <Border Style="{StaticResource MainBorderStyle}">
+
+                <Grid ColumnDefinitions="*, *" RowDefinitions="Auto,Auto,*" Padding="60">
+
+                    <Label Grid.Row="0" Grid.ColumnSpan="2" Text="CONFIGURATION" Style="{StaticResource SubtitleLabelStyle}" />
+                    <BoxView Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource LongDividerStyle}" />
+
+                    <VerticalStackLayout Grid.Row="2" Grid.Column="0" VerticalOptions="Start" Spacing="20">
+
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="PREMIER JOUEUR (X)" Style="{StaticResource NormalLabelStyle}" />
+                            <Entry Text="{Binding PlayerOneName}" Style="{StaticResource EntryStyle}" />
+                            <BoxView Style="{StaticResource DividerStyle}" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="SECOND JOUEUR (O)" Style="{StaticResource NormalLabelStyle}" />
+                            <Grid ColumnDefinitions="*, Auto">
+                                <Entry Grid.Column="0" Text="{Binding PlayerTwoName}" Style="{StaticResource EntryStyle}" />
+                                <HorizontalStackLayout Grid.Column="1" VerticalOptions="Center" Margin="10,0,0,0">
+                                    <Label Text="BOT ?" VerticalOptions="Center" Margin="0,0,5,0" FontSize="12" FontAttributes="Bold" TextColor="Black"/>
+                                    <CheckBox Color="Black" IsChecked="{Binding IsPlayerTwoBot}" />
+                                </HorizontalStackLayout>
+                            </Grid>
+                            <BoxView Style="{StaticResource DividerStyle}" />
+                        </VerticalStackLayout>
+
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Row="2" Grid.Column="1" VerticalOptions="End" Spacing="15">
+                        <Button Text="LANCER LA PARTIE" Style="{StaticResource PrimaryButtonStyle}" Clicked="BtnLancer_Clicked"/>
+                        <Button Text="CHARGER UNE SAUVEGARDE" Style="{StaticResource SecondaryButtonStyle}" Clicked="BtnCharger_Clicked"/>
+                        <Button Text="RETOUR" Style="{StaticResource SecondaryButtonStyle}" Clicked="BtnRetour_Clicked"/>
+                        <Label></Label>
+                    </VerticalStackLayout>
+
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollView>
+</ContentPage>

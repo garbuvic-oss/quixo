@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:enum="clr-namespace:Quixo.Lib.Enum;assembly=Quixo.Lib"
+             x:Class="Quixo.Resources.Pages.PlateauPage"
+             Title="PlateauPage">
+    
+    <ScrollView>
+        <Grid Padding="20"
+              Style="{StaticResource MainGridStyle}">
+
+            <Border Style="{StaticResource MainBorderStyle}">
+
+                <Grid ColumnDefinitions="*, *"
+                      RowDefinitions="Auto,Auto,*"
+                      Padding="60">
+
+                    <Label Grid.Row="0"
+                           Grid.ColumnSpan="2"
+                           Text="PLATEAU DE JEU"
+                           Style="{StaticResource SubtitleLabelStyle}" />
+
+                    <BoxView Grid.Row="1"
+                             Grid.ColumnSpan="2"
+                             Style="{StaticResource LongDividerStyle}" />
+
+                    <VerticalStackLayout Grid.Row="2"
+                                         Grid.Column="0"
+                                         VerticalOptions="Start"
+                                         Spacing="20">
+
+                        <CollectionView ItemsSource="{Binding FlatBoard}"
+                                        SelectionMode="None"
+                                        WidthRequest="384"
+                                        HeightRequest="384"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical"
+                                                 Span="5"
+                                                 HorizontalItemSpacing="6"
+                                                 VerticalItemSpacing="6" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border WidthRequest="72"
+                                            HeightRequest="72"
+                                            Stroke="{StaticResource BlackBrush}"
+                                            StrokeThickness="2"
+                                            BackgroundColor="Transparent"
+                                            Padding="0">
+                                        <Border.Triggers>
+                                            <DataTrigger TargetType="Border"
+                                                         Binding="{Binding IsSelected}"
+                                                         Value="True">
+                                                <Setter Property="BackgroundColor" Value="{StaticResource Secondary}" />
+                                                <Setter Property="Stroke" Value="{StaticResource PrimaryBrush}" />
+                                                <Setter Property="StrokeThickness" Value="4" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Border"
+                                                         Binding="{Binding IsFrozen}"
+                                                         Value="True">
+                                                <Setter Property="BackgroundColor" Value="#FFA500" />
+                                            </DataTrigger>
+                                        </Border.Triggers>
+                                        <Border.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.SelectCubeCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+                                                                  CommandParameter="{Binding .}" />
+                                        </Border.GestureRecognizers>
+                                        <Label x:Name="CubeLabel"
+                                               Text="{Binding DisplaySymbol}"
+                                               TextColor="{StaticResource Black}"
+                                               FontSize="30"
+                                               FontAttributes="Bold"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalTextAlignment="Center">
+                                            <Label.Triggers>
+                                                <DataTrigger TargetType="Label"
+                                                             Binding="{Binding IsFrozen}"
+                                                             Value="True">
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                        <Grid ColumnDefinitions="Auto, Auto, Auto, Auto"
+                              HorizontalOptions="Center"
+                              VerticalOptions="Center">
+                            <Button Text="↑"
+                                Command="{Binding MoveCommand}"
+                                CommandParameter="{x:Static enum:Direction.UP}"
+                                    Grid.Column="0"
+                                    FontSize="50"
+                                    WidthRequest="100"
+                                    HorizontalOptions="Center" />
+                            <Button Text="↓"
+                                Command="{Binding MoveCommand}"
+                                CommandParameter="{x:Static enum:Direction.DOWN}"
+                                    Grid.Column="1"
+                                    FontSize="50"
+                                    WidthRequest="100"
+                                    HorizontalOptions="Center" />
+                            <Button Text="←"
+                                Command="{Binding MoveCommand}"
+                                CommandParameter="{x:Static enum:Direction.LEFT}"
+                                    Grid.Column="2"
+                                    FontSize="50"
+                                    WidthRequest="100"
+                                    HorizontalOptions="Center" />
+                            <Button Text="→"
+                                Command="{Binding MoveCommand}"
+                                CommandParameter="{x:Static enum:Direction.RIGHT}"
+                                    Grid.Column="3"
+                                    FontSize="50"
+                                    WidthRequest="100"
+                                    HorizontalOptions="Center" />
+                        </Grid>
+
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Row="2"
+                                         Grid.Column="1"
+                                         Spacing="15"
+                                         VerticalOptions="Center">
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto">
+
+                            <VerticalStackLayout Grid.Row="0"
+                                                 Margin="0,50,0,50"
+                                                 Spacing="8">
+                                <Label Text="TOUR ACTUEL"
+                                       Style="{StaticResource NormalLabelStyle}" />
+                                <Label Text="{Binding Game.CurrentPlayer.Name}"
+                                       Style="{StaticResource NormalLabelStyle}" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Row="1"
+                                                 Margin="0,50,0,100"
+                                                 Spacing="8">
+                                <Label Text="SCORE GLOBAL"
+                                       Style="{StaticResource NormalLabelStyle}" />
+                                <HorizontalStackLayout Spacing="10">
+                                    <Label Text="{Binding Game.Player1.Score}"
+                                           Style="{StaticResource NormalLabelStyle}" />
+                                    <Label Text="-"
+                                           Style="{StaticResource NormalLabelStyle}" />
+                                    <Label Text="{Binding Game.Player2.Score}"
+                                           Style="{StaticResource NormalLabelStyle}" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+
+                            <Button Text="ABANDONNER"
+                                    Grid.Row="2"
+                                    Style="{StaticResource PrimaryButtonStyle}"
+                                    Clicked="BtnAbandonner_Clicked"/>
+
+                            <Button Text="SAUVEGARDER ET QUITTER"
+                                    Grid.Row="3"
+                                    Margin="0,50,0,0"
+                                    Command="{Binding SaveAndQuitCommand}"
+                                    Style="{StaticResource SecondaryButtonStyle}" />
+
+                        </Grid>
+
+                    </VerticalStackLayout>
+
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollView>
+</ContentPage>

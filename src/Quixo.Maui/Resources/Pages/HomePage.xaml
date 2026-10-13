@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Quixo.Resources.Pages.HomePage"
+             Title="HomePage">
+
+    <ScrollView>
+        <Grid Padding="20"
+            Style="{StaticResource MainGridStyle}">
+        
+            <Border Style="{StaticResource MainBorderStyle}">
+                
+                <Grid ColumnDefinitions="*, *" Padding="60">
+
+                    <VerticalStackLayout Grid.Column="0"
+                                        VerticalOptions="Start"
+                                        Spacing="20">
+
+                        <Label Text="QUI&#10;XO." Style="{StaticResource TitleLabelStyle}" />
+
+                        <BoxView Style="{StaticResource SmallDividerStyle}" />
+
+                        <Label Text="PROJET DE FIN D'ANNÉE&#10;BUT INFORMATIQUE&#10;ANNÉE 2025/2026"
+                            Style="{StaticResource InfoLabelStyle}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1"
+                                        VerticalOptions="End"
+                                        Spacing="15">
+
+                        <Button Text="01. DÉMARRER"
+                                Style="{StaticResource PrimaryButtonStyle}"
+                                Clicked="BtnDemarrer_Clicked"/>
+
+                        <Button Text="02. PARAMÈTRES"
+                                Style="{StaticResource PrimaryButtonStyle}"
+                                Clicked="BtnParametres_Clicked"/>
+
+                        <Button Text="03. INFORMATIONS"
+                                Style="{StaticResource PrimaryButtonStyle}" 
+                                Clicked="BtnInformations_Clicked"/>
+                        
+                        <Button Text="04. QUITTER"
+                                Style="{StaticResource PrimaryButtonStyle}"
+                                Clicked="BtnQuitter_Clicked"/>
+
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

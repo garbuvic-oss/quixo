@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Quixo.Resources.Pages.SettingsPage"
+             Title="SettingsPage">
+    <ScrollView>
+        <Grid Padding="20" 
+              Style="{StaticResource MainGridStyle}">
+
+            <Border Style="{StaticResource MainBorderStyle}">
+                <Grid ColumnDefinitions="*, *"
+                      RowDefinitions="Auto,Auto,*"
+                      Padding="60">
+
+                    <Label Grid.Row="0"
+                           Grid.ColumnSpan="2"
+                           Text="PARAMETRES"
+                           Style="{StaticResource SubtitleLabelStyle}" />
+
+                    <BoxView Grid.Row="1"
+                             Grid.ColumnSpan="2"
+                             Style="{StaticResource LongDividerStyle}" />
+
+                    <Grid Grid.Row="2"
+                          Grid.Column="0"
+                          ColumnDefinitions="*, *"
+                          Padding="0">
+
+                        <VerticalStackLayout Grid.Column="0"
+                                             VerticalOptions="Start"
+                                             Spacing="10">
+                            <Label Style ="{StaticResource InfoLabelStyle}"
+                                Text="AUDIO / MUSIQUE"
+                                VerticalOptions="Center" 
+                                HorizontalOptions="Start"/>
+                            <BoxView Grid.Row="1"
+                                     Grid.ColumnSpan="2"
+                                     Style="{StaticResource LongDividerStyle}" />
+                            <Label Style ="{StaticResource InfoLabelStyle}"
+                                Text="EFFET SONORES"
+                                VerticalOptions="Center" 
+                                HorizontalOptions="Start"/>
+                            <BoxView Grid.Row="1"
+                                     Grid.ColumnSpan="2"
+                                     Style="{StaticResource LongDividerStyle}" />
+                            <Label Style ="{StaticResource InfoLabelStyle}"
+                                Text="MODE DALTONIEN"
+                                VerticalOptions="Center" 
+                                HorizontalOptions="Start"/>
+                            <BoxView Grid.Row="1"
+                                     Grid.ColumnSpan="2"
+                                     Style="{StaticResource LongDividerStyle}" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1"
+                                         VerticalOptions="Start"
+                                         Spacing="10">
+                            <Label Style ="{StaticResource InfoLabelStyle}"
+                               Text="[ON]"
+                               VerticalOptions="Center" 
+                               HorizontalOptions="End"/>
+                            <BoxView Grid.Row="1"
+                                     Grid.ColumnSpan="2"
+                                     Style="{StaticResource LongDividerStyle}" />
+                            <Label Style ="{StaticResource InfoLabelStyle}"
+                                Text="[ON]"
+                                VerticalOptions="Center" 
+                                HorizontalOptions="End"/>
+                            <BoxView Grid.Row="1"
+                                     Grid.ColumnSpan="2"
+                                     Style="{StaticResource LongDividerStyle}" />
+                            <Label Style ="{StaticResource InfoLabelStyle}"
+                                Text="[OFF]"
+                                VerticalOptions="Center" 
+                                HorizontalOptions="End"/>
+                            <BoxView Grid.Row="1"
+                                     Grid.ColumnSpan="2"
+                                     Style="{StaticResource LongDividerStyle}" />
+                        </VerticalStackLayout>
+                    </Grid>
+                    <VerticalStackLayout Grid.Row="2"
+                     Grid.Column="1"
+                     VerticalOptions="End"
+                     Spacing="15">
+                        <Button Text="ENREGISTRER"
+                            Style="{StaticResource SecondaryButtonStyle}"
+                                Clicked="BtnEnregistrer_Clicked"/>
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollView>
+</ContentPage>

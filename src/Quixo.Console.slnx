@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Quixo.Console/Quixo.Console.csproj" />
+  <Project Path="Quixo.Lib/Quixo.Lib.csproj" />
+  <Project Path="Quixo.Tests/Quixo.Tests.csproj" />
+  <Project Path="Quixo.stub/Quixo.stub.csproj" />
+  <Project Path="Quixo.Json/Quixo.Json.csproj" />
+</Solution>

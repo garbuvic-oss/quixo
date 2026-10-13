@@ -1,0 +1,179 @@
+{
+  "Players": [
+    {
+      "Kind": "Human",
+      "Name": "Joueur 1",
+      "Symbol": 1,
+      "Score": 1
+    },
+    {
+      "Kind": "Human",
+      "Name": "Joueur 2",
+      "Symbol": 2,
+      "Score": 0
+    }
+  ],
+  "CurrentPlayerIndex": 0,
+  "Board": [
+    [
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 0,
+        "Y": 0
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 0,
+        "Y": 1
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 0,
+        "Y": 2
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 0,
+        "Y": 3
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 0,
+        "Y": 4
+      }
+    ],
+    [
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 1,
+        "Y": 0
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 1,
+        "Y": 1
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 1,
+        "Y": 2
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 1,
+        "Y": 3
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 1,
+        "Y": 4
+      }
+    ],
+    [
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 2,
+        "Y": 0
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 2,
+        "Y": 1
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 2,
+        "Y": 2
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 2,
+        "Y": 3
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 2,
+        "Y": 4
+      }
+    ],
+    [
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 3,
+        "Y": 0
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 3,
+        "Y": 1
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 3,
+        "Y": 2
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 3,
+        "Y": 3
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 3,
+        "Y": 4
+      }
+    ],
+    [
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 4,
+        "Y": 0
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 4,
+        "Y": 1
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 4,
+        "Y": 2
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 4,
+        "Y": 3
+      },
+      {
+        "Symbol": 0,
+        "IsFrozen": false,
+        "X": 4,
+        "Y": 4
+      }
+    ]
+  ]
+}
