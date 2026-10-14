@@ -90,7 +90,7 @@ L’environnement doit avoir le workload MAUI installé avant de lancer ces comm
 
 ## Sauvegardes
 
-La partie sauvegardé se trouve dans le dossier `save/` et porte le nom de `partie_quixo.json`.
+La partie sauvegardée se trouve dans le dossier `save/` et porte le nom de `partie_quixo.json`.
 
 # Démo
 
